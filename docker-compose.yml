@@ -13,6 +13,9 @@ services:
     - ./gitlab/config:/etc/gitlab
     - ./gitlab/logs:/var/log/gitlab
     - ./gitlab/data:/var/opt/gitlab
+    environment:
+    - GITLAB_BACKUP_SCHEDULE: daily
+    - GITLAB_BACKUP_TIME: 03:00
   
   # gitlab-runner:
   #  container_name: gitlab-runner
