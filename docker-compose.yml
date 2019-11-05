@@ -10,7 +10,7 @@ services:
       - "./nginx/nginx-logs:/var/log/nginx"
     network_mode: "bridge"
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - gitlab_app
     links:
@@ -18,7 +18,7 @@ services:
   gitlab_app:
     restart: always
     image: "gitlab/gitlab-ce:latest"
-    hostname: "192.168.1.75"
+    hostname: "192.168.50.132"
     container_name: gitlab_app
     expose:
       - "8081"
