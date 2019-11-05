@@ -10,15 +10,15 @@ services:
     - 80:80
     - 23:22
     volumes:
-    - /gitlab/config:/etc/gitlab
-    - /gitlab/logs:/var/log/gitlab
-    - /gitlab/data:/var/opt/gitlab
+    - ./gitlab/config:/etc/gitlab
+    - ./gitlab/logs:/var/log/gitlab
+    - ./gitlab/data:/var/opt/gitlab
   
-  gitlab-runner:
-   container_name: gitlab-runner
-   image: gitlab/gitlab-runner:latest
-   volumes:
-     - /srv/gitlab-runner/data:/home/gitlab_ci_multi_runner/data
-     - /srv/gitlab-runner/config:/etc/gitlab-runner
-     - /var/run/docker.sock:/var/run/docker.sock:rw
-   restart: always
+  # gitlab-runner:
+  #  container_name: gitlab-runner
+  #  image: gitlab/gitlab-runner:latest
+  #  volumes:
+  #    - ./gitlab-runner/data:/home/gitlab_ci_multi_runner/data
+  #    - ./gitlab-runner/config:/etc/gitlab-runner
+  #    - /var/run/docker.sock:/var/run/docker.sock:rw
+  #  restart: always
