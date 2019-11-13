@@ -1,24 +1,24 @@
 version: "2"
 services:
-  nginx:
-    restart: always
-    image: nginx:latest
-    container_name: nginx
-    volumes:
-      - "./nginx/nginx-conf/nginx.conf:/etc/nginx/nginx.conf:ro"
-      - "./nginx/nginx-conf/gitlab-http.conf:/etc/nginx/conf.d/gitlab-http.conf:ro"
-      - "./nginx/nginx-logs:/var/log/nginx"
-    network_mode: "bridge"
-    ports:
-      - "80:80"
-    depends_on:
-      - gitlab_app
-    links:
-      - gitlab_app
+  # nginx:
+  #   restart: always
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   volumes:
+  #     - "./nginx/nginx-conf/nginx.conf:/etc/nginx/nginx.conf:ro"
+  #     - "./nginx/nginx-conf/gitlab-http.conf:/etc/nginx/conf.d/gitlab-http.conf:ro"
+  #     - "./nginx/nginx-logs:/var/log/nginx"
+  #   network_mode: "bridge"
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - gitlab_app
+  #   links:
+  #     - gitlab_app
   gitlab_app:
     restart: always
     image: "gitlab/gitlab-ce:latest"
-    hostname: "git"
+    hostname: "192.168.50.132"
     container_name: gitlab_app
     expose:
       - "8081"
@@ -40,9 +40,13 @@ services:
     image: postgres:latest
     container_name: postgresql
     environment:
-      - POSTGRES_PASSWORD=T0pS3cr3T
+      - POSTGRES_DB=gitlabhq_production
+      - POSTGRES_USER=git
+      - POSTGRES_PASSWORD=12345
     expose:
       - "5432"
+    ports:
+      - "5432:5432"
     volumes:
       - "./postges/postgresql-data:/var/lib/postgresql/data"
     network_mode: "bridge"
