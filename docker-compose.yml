@@ -28,6 +28,7 @@ services:
       - "./gitlab/gitlab-logs:/var/log/gitlab"
     network_mode: "bridge"
     ports:
+      - "80:80"
       - "8022:22"
     depends_on:
       - postgresql
