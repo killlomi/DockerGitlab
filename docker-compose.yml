@@ -36,6 +36,16 @@ services:
     links:
       - postgresql
       - redis
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        postgresql['enable'] = false
+        gitlab_rails['db_adapter'] = "postgresql"
+        gitlab_rails['db_database'] = "gitlabhq_production"
+        gitlab_rails['db_username'] = "git"
+        gitlab_rails['db_password'] = "12345"
+        gitlab_rails['db_host'] = "postgresql"
+        gitlab_rails['db_port'] = 5432
+
   postgresql:
     restart: always
     image: postgres:latest
