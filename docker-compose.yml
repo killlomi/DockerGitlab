@@ -45,6 +45,12 @@ services:
         gitlab_rails['db_password'] = "12345"
         gitlab_rails['db_host'] = "postgresql"
         gitlab_rails['db_port'] = 5432
+        redis['enable'] = false
+        gitlab_rails['redis_host'] = "redis"
+        gitlab_rails['redis_port'] = 6379
+        gitlab_rails['redis_database'] = 0
+        # redis['port'] = 6379
+        # redis['bind'] = redis
 
   postgresql:
     restart: always
